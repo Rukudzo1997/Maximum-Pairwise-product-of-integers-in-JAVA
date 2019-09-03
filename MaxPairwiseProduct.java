@@ -1,30 +1,34 @@
+
 import java.util.Scanner;
-import java.util.Arrays;
-
-
 public class MaxPairwiseProduct {
 	
-	public void maxPairwiseProduct(long[] S){
-		
-		Arrays.sort(S);
-		long max = S[S.length-2]*S[S.length-1];
+	public void maxPairwiseProduct(long[] array){
+		long max = 0;
+		for(int i = 0; i < array.length; i++) {
+			for(int j = i + 1; j < array.length; j++){
+				long running_max = array[i]*array[j];
+				if(running_max > max) {
+					max = running_max;
+				}
+			}
+		}
 		System.out.println(max);
 	}
 	
-
-
-	public static void main(String[] args){
-		Scanner s = new Scanner(System.in); 
-		int n = s.nextInt(); 
-		long[] S = new long[n]; 
 	
-		for (int i = 0; i < n; i++)
-		{ 
-			S[i] =  s.nextLong();
+	
+	
+	public static void main(String args[]) {
+		Scanner in = new Scanner(System.in);
+		int n = in.nextInt();
+		long[] array = new long[n];
+		
+		for(int i = 0; i < n; i++) {
+			array[i] = in.nextLong();
 		}
-
-		MaxPairwiseProduct maxp = new MaxPairwiseProduct();
-		maxp.maxPairwiseProduct(S);
-		s.close();
+		
+		MaxPairwiseProduct mpwp = new MaxPairwiseProduct();
+		mpwp.maxPairwiseProduct(array);
+		in.close();
 	}
 }
